@@ -5,16 +5,16 @@ function App(conf) {
   conf = {
     fov: 75,
     cameraZ: 300,
-    background: 0x213D48,
+    background: 0x127475,
     tubeRadius: 4,
     resY: 92,   // This controls the number- 90is two
     resX: 3, // This controls the roughness
     noiseCoef: 50,
-    timeCoef: 100,
+    timeCoef: 250,
     mouseCoef: 20,
     heightCoef: 10,
     ambientColor: 0x000,
-    lightIntensity: 1,
+    lightIntensity: 4,
     light1Color: 0xF0F6F6,
     light2Color: 0x42BFDD,
     light3Color: 0xFF66B3,
@@ -106,9 +106,9 @@ function App(conf) {
   }
 
   function updateNoise() {
-    noiseConf.coef = conf.noiseCoef * 0.00012;
+    noiseConf.coef = conf.noiseCoef * 0.00016;
     noiseConf.height = conf.heightCoef;
-    noiseConf.time = Date.now() * conf.timeCoef * 0.000002;
+    noiseConf.time = Date.now() * conf.timeCoef * 0.00000002;
 
     // Smoothly transition the 'mouse' vector
     mouse.x += (targetMouse.x - mouse.x) * smoothness;
@@ -280,3 +280,57 @@ class Tube {
 }
 
 App();
+
+
+// Init
+  var app = angular.module("prototype", []);
+  
+  // Flip word
+  ("use strict");
+  app.directive("flipWord", function($interval) {
+    return {
+      scope: {
+        flipWord: "="
+      },
+      link: function(scope, element) {
+        var timer = 3000, // Make sure timer is equal to animation length in the CSS.
+          words = scope.flipWord ? scope.flipWord : [],
+          i = 0;
+  
+        function getNextWord() {
+          i++;
+  
+          if (i >= words.length) {
+            i = 0;
+          }
+  
+          return words[i];
+        }
+  
+        function setWord() {
+          element[0].innerHTML =
+            '<span class="flip-word">' + getNextWord() + "</span>";
+        }
+  
+        $interval(function() {
+          setWord();
+        }, timer);
+  
+        setWord();
+      }
+    };
+  });
+
+
+  document.addEventListener('DOMContentLoaded', function() {
+    setTimeout(function() {
+      var preloader = document.getElementById('preloader');
+      preloader.classList.add('hidden');
+
+      // Optional: remove the preloader from the DOM after the animation
+      preloader.addEventListener('animationend', function() {
+        preloader.style.display = 'none';
+      });
+    }, 10); // Wait for 1.5 seconds before starting the slide-up animation
+  });
+

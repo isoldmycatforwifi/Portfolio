@@ -8,6 +8,11 @@
 </head>
 
 <body>
+
+  <div id="preloader">
+    <h1>Ciao</h1>
+  </div>
+  
   
   <header>
     <nav class="navbar">
@@ -28,7 +33,11 @@
 
 <section id="transparent-layer">
   <div class="inner-content">
-      <h1>I am a technologist</h1>
+    <div data-ng-app="prototype">
+      <h1 class="title">
+        I am d<span data-flip-word="['esigner', 'eveloper']"></span><br>
+      </h1>
+    </div>
       <p class="sub-heading">Designer with front-end development expertise. </br>
       
         My broad knowledge enhances my creativity in crafting dynamic 
@@ -36,11 +45,14 @@
   </div>
 </section>
 
+
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/100/three.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/simplex-noise/2.4.0/simplex-noise.min.js"></script> 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/chroma-js/2.0.3/chroma.min.js"></script>
 <script src="https://klevron.github.io/codepen/three.js/OrbitControls.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@barba/core"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.6/angular.js"></script>
 <script src="script.js"></script>
 
 </body>

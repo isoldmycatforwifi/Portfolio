@@ -321,16 +321,32 @@ App();
     };
   });
 
+  // Gsap Intro
 
   document.addEventListener('DOMContentLoaded', function() {
-    setTimeout(function() {
-      var preloader = document.getElementById('preloader');
-      preloader.classList.add('hidden');
+    // Start the animation after a 1.5-second delay
+    gsap.to("#preloader", {
+      delay: 0.5, // Wait for 1.5 seconds before starting the animation
+      duration: 2, // Duration of the animation
+      y: "-100%", // Slide the entire preloader up
+      ease: "power2.inOut", // Smooth transition for the slide up
+      onComplete: hidePreloader // Function to hide the preloader after the animation
+    });
+    
+    function hidePreloader() {
+      // Hide or remove the preloader from the DOM
+      document.getElementById("preloader").style.display = "none";
+    }
 
-      // Optional: remove the preloader from the DOM after the animation
-      preloader.addEventListener('animationend', function() {
-        preloader.style.display = 'none';
-      });
-    }, 10); // Wait for 1.5 seconds before starting the slide-up animation
+    gsap.fromTo("#sub-heading", 
+    {opacity: 0, y: 10}, // Starting properties
+    {duration: 2, opacity: 1, y: 0, delay: 1} // Ending properties and animation timing
+  );
+
+
+  gsap.fromTo(".navbar", 
+    {opacity: 0, y: -20}, // Starting properties
+    {duration: 1, opacity: 1, y: 0, delay: 1} // Ending properties and animation timing
+  );
+
   });
-
